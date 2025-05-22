@@ -1,0 +1,9 @@
+{
+	"name": "GithubtoADLS",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7b8a2562-20a0-4187-b266-4d573cd4f245",
+		"tenantId": "78b220cd-048a-4e32-824e-892d9af18ba5"
+	}
+}
