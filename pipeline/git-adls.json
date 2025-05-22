@@ -1,0 +1,118 @@
+{
+	"name": "git-adls",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.p_array",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data from git",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "source_ds",
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@item().filename",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "sink_ds",
+									"type": "DatasetReference",
+									"parameters": {
+										"file_name": {
+											"value": "@item().filename",
+											"type": "Expression"
+										},
+										"folder": {
+											"value": "@item().folder",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"p_array": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"folder": "netflix_cast",
+						"filename": "netflix_cast.csv"
+					},
+					{
+						"folder": "netflix_category",
+						"filename": "netflix_category.csv"
+					},
+					{
+						"folder": "netflix_countries",
+						"filename": "netflix_countries.csv"
+					},
+					{
+						"folder": "netflix_directors",
+						"filename": "netflix_directors.csv"
+					}
+				]
+			}
+		},
+		"annotations": []
+	}
+}
