@@ -2,7 +2,7 @@
 	"name": "walmart_sink",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeRawStorage",
+			"referenceName": "walmart_adls",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
