@@ -1,0 +1,17 @@
+{
+	"name": "walmart_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeRawStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			}
+		},
+		"schema": []
+	}
+}
