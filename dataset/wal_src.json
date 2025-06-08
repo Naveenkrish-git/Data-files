@@ -1,0 +1,22 @@
+{
+	"name": "wal_src",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GithubData",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "Naveenkrish-git/Data-files/refs/heads/Newbranch/Walmart%20file.csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
